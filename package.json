@@ -1,0 +1,34 @@
+{
+  "name": "feeswise-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "api:create": "claudia create --profile feeswise --config api/claudia.json --region us-east-1 --api-module api/index --timeout 120 --version development --env dev",
+    "api:deploy": "claudia update --profile feeswise --config api/claudia.json --version development --env dev",
+    "api:deploy:prod": "claudia update --profile feeswise --config api/claudia.json --version production --env prod",
+    "api:destroy": "claudia destroy --profile feeswise --source api/index --config api/claudia.json --version development --env dev",
+    "api:load-from-json": "claudia set-version --profile feeswise  --config api/claudia.json --version development --set-env-from-json dev.json",
+    "api:load-from-json:prod": "claudia set-version --profile feeswise  --config api/claudia.json --version production --set-env-from-json prod.json",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepush": "npm run lint"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "claudia-api-builder": "^4.1.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {
+    "claudia": "^5.8.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jasmine": "^2.10.1",
+    "husky": "^3.0.5",
+    "jasmine": "^3.4.0"
+  }
+}
